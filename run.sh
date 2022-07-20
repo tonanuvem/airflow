@@ -9,4 +9,4 @@ echo -e "AIRFLOW_UID=$(id -u)" > .env
 docker-compose up airflow-init
 
 # Start up all services
-docker-compose up
+docker-compose up -d
