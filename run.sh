@@ -10,3 +10,7 @@ docker-compose up airflow-init
 
 # Start up all services
 docker-compose up -d
+
+IP=$(curl checkip.amazonaws.com)
+
+echo "Acessar $IP:8080 com username/password: airflow "
