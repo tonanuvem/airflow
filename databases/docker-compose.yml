@@ -12,7 +12,7 @@ services:
       - "8080:80"
     volumes:
       - "pgadmindata:/var/lib/pgadmin"
-      - "../postgres_servers.json:/pgadmin4/servers.json"
+      - "postgres_servers.json:/pgadmin4/servers.json"
     restart: unless-stopped
     depends_on: 
       - postgresdb
@@ -23,7 +23,7 @@ services:
       POSTGRES_PASSWORD: admin
     volumes:
       - "postgresdata:/var/lib/postgresql/data"
-      - "../postgres_init_database.sh:/docker-entrypoint-initdb.d/init-database.sh"
+      - "postgres_init_database.sh:/docker-entrypoint-initdb.d/init-database.sh"
 
   # PAGAMENTO e PEDIDO Microservice : exemplo MongoDB : rodando 2 juntos só para facilitar o LAB
   mongoexpress:
@@ -46,7 +46,7 @@ services:
       MONGO_REPLICA_SET_NAME: rs0
     volumes:
       - mongodata:/data
-      - "../mongo_order.json:/data/mongo_order.json"
+      - "mongo_order.json:/data/mongo_order.json"
     ports:
       - "27017:27017"
     #healthcheck: #TODO: configurar replicaset
@@ -82,8 +82,8 @@ services:
       - "3306:3306"
     volumes:
       - mysqldata:/var/lib/mysql
-      - "../mysql_init_database.sql:/docker-entrypoint-initdb.d/init-database.sql"
-      - "../mysql.cnf:/etc/mysql/conf.d/mysql.cnf"
+      - "mysql_init_database.sql:/docker-entrypoint-initdb.d/init-database.sql"
+      - "mysql.cnf:/etc/mysql/conf.d/mysql.cnf"
 
   # Delivery (Logistica) Microservice : exemplo Redis
   redis-commander:
