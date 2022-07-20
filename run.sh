@@ -1,5 +1,7 @@
 # Download the docker-compose.yaml file
 wget 'https://airflow.apache.org/docs/apache-airflow/stable/docker-compose.yaml'
+wget https://github.com/tonanuvem/airflow.git
+chmod +x airflow.sh
 
 # Make expected directories and set an expected environment variable
 mkdir -p ./dags ./logs ./plugins
