@@ -1,0 +1,111 @@
+version: "3.4"
+
+services:
+
+  # PRODUTOS Microservice : exemplo Postgres
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "8080:80"
+    volumes:
+      - "pgadmindata:/var/lib/pgadmin"
+      - "../postgres_servers.json:/pgadmin4/servers.json"
+    restart: unless-stopped
+    depends_on: 
+      - postgresdb
+      
+  postgresdb:
+    image: debezium/postgres:13-alpine
+    environment:
+      POSTGRES_PASSWORD: admin
+    volumes:
+      - "postgresdata:/var/lib/postgresql/data"
+      - "../postgres_init_database.sh:/docker-entrypoint-initdb.d/init-database.sh"
+
+  # PAGAMENTO e PEDIDO Microservice : exemplo MongoDB : rodando 2 juntos só para facilitar o LAB
+  mongoexpress:
+    image: mongo-express
+    ports:
+      - "8081:8081"
+    restart: unless-stopped
+    depends_on: 
+      - mongo
+
+  mongo:
+    image: mongo:latest
+    #image: debezium/example-mongodb #TODO: configurar replicaset
+    environment:
+      #PUID: 1000
+      #PGID: 1000
+      #MONGO_INITDB_ROOT_USERNAME: mongo
+      #MONGO_INITDB_ROOT_PASSWORD: mongo
+      MONGO_INITDB_DATABASE: pedidos
+      MONGO_REPLICA_SET_NAME: rs0
+    volumes:
+      - mongodata:/data
+      - "../mongo_order.json:/data/mongo_order.json"
+    ports:
+      - "27017:27017"
+    #healthcheck: #TODO: configurar replicaset
+    #  test: test $$(echo "rs.initiate().ok || rs.status().ok" | mongo -u $${MONGO_INITDB_ROOT_USERNAME} -p $${MONGO_INITDB_ROOT_PASSWORD} --quiet) -eq 1
+    #  interval: 10s
+    #  start_period: 30s
+    #command: "mongod --replSet rs0"
+
+  # USUARIOS Microservice : exemplo MySQL
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: mysqldb
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+      PMA_USER: admin
+      PMA_PASSWORD: admin
+    restart: always
+    ports:
+      - 8082:80  
+    restart: unless-stopped
+    depends_on: 
+      - mysqldb
+    
+  mysqldb:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: usuarios
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysqldata:/var/lib/mysql
+      - "../mysql_init_database.sql:/docker-entrypoint-initdb.d/init-database.sql"
+      - "../mysql.cnf:/etc/mysql/conf.d/mysql.cnf"
+
+  # Delivery (Logistica) Microservice : exemplo Redis
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    restart: unless-stopped
+    environment:
+    - REDIS_HOSTS=local:redis:6379
+    ports:
+    - "8083:8081"
+    depends_on: 
+      - redis
+
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+    volumes:
+      - redisdata:/data  
+
+volumes:
+  pgadmindata:
+  postgresdata:
+  mongodata:
+  mysqldata:
+  redisdata:
