@@ -15,7 +15,7 @@ IP=$(curl -s checkip.amazonaws.com)
 echo ""
 echo "URLs do projeto:"
 echo ""
-echo " - PostGres UI    : $IP:8070"
+echo " - PostGres UI    : $IP:8080"
 echo " - Mongo UI       : $IP:8081"
 echo " - MySQL UI        : $IP:8082"
 echo " - Redis UI        : $IP:8083"
