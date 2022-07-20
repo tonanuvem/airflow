@@ -23,7 +23,7 @@ services:
       POSTGRES_PASSWORD: admin
     volumes:
       - "postgresdata:/var/lib/postgresql/data"
-      - "postgres_init_database.sh:/docker-entrypoint-initdb.d/init-database.sh"
+      - "./postgres_init_database.sh:/docker-entrypoint-initdb.d/init-database.sh"
 
   # PAGAMENTO e PEDIDO Microservice : exemplo MongoDB : rodando 2 juntos só para facilitar o LAB
   mongoexpress:
