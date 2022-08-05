@@ -1,0 +1,20 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:9.6-alpine
+    environment:
+      - POSTGRES_USER=test
+      - POSTGRES_PASSWORD=test
+      - POSTGRES_DB=test
+
+  pod:
+    image: akkidx/airflow:blog1
+    depends_on:
+      - postgres
+    environment:
+      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgres://test:test@postgres/test
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    ports:
+      - "18080:18080"
