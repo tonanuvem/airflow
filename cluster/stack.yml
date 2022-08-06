@@ -9,6 +9,8 @@ services:
 
   airflow:
     image: akkidx/airflow:blog1
+    #build:
+      context: "../Dockerfile"
     depends_on:
       - postgres
     environment:
