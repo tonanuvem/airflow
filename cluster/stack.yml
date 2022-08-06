@@ -16,6 +16,6 @@ services:
       - AIRFLOW__CORE__EXECUTOR=LocalExecutor
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
-      - swarm_operator.py:/root/airflow/dags/swarm_operator.py
+      - "./swarm_operator.py:/root/airflow/dags/swarm_operator.py"
     ports:
       - "18080:18080"
