@@ -11,4 +11,4 @@ Exemplo de uso do Airflow em DataOps
 <br> <br>
 > https://www.projectpro.io/recipes/schedule-dag-file-create-table-and-load-data-into-it-mysql-and-hive-airflow
 <br> <br>
-> 
+> https://towardsdatascience.com/data-engineering-basics-of-apache-airflow-build-your-first-pipeline-eefecb7f1bb9
