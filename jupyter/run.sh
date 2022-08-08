@@ -10,9 +10,7 @@ docker run -it --name jupyter --rm -p 8888:8888 -v "$dir":/home/jovyan/work -d j
 echo ""
 echo "Aguardando a configuração do Jupyter."
 
-LOG="     or http://127.0.0.1:8888/lab?token"
-
-while [ "$(docker logs jupyter | grep '$LOG'| wc -l)" != "1" ]; do
+while [ "$(docker logs jupyter | grep "     or http://127.0.0.1:8888/lab?token"| wc -l)" != "1" ]; do
   printf "."
   sleep 1
 done
@@ -22,4 +20,4 @@ echo ""
 echo "Senha de Bootstrap:"
 echo ""
 
-docker logs jupyter | grep '$LOG'
+docker logs jupyter | grep "     or http://127.0.0.1:8888/lab?token"
