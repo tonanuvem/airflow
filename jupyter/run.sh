@@ -4,22 +4,11 @@ echo "Executando Jupyter Notebook para análise e transformação dos dados"
 
 dir=`pwd`; dir="$(dirname "$dir")"; echo $dir;
 
-#docker run -it --name jupyter --rm -p 8888:8888 -v "$dir":/home/jovyan/work -d jupyter/datascience-notebook
+#https://jupyter-server.readthedocs.io/en/latest/operators/public-server.html#preparing-a-hashed-password
 
-docker run -it --name jupyter --rm -p 8888:8888 j-v "$dir":/home/jovyan/work -d jupyter/datascience-notebook \
-    start-notebook.sh --NotebookApp.password='argon2:$argon2id$v=19$m=10240,t=10,p=8$JdAN3fe9J45NvK/EPuGCvA$O/tbxglbwRpOFuBNTYrymAEH6370Q2z+eS1eF4GM6Do'
-
-echo ""
-echo "Aguardando a configuração do Jupyter."
-
-#while [ "$(docker logs jupyter | grep "     or http://127.0.0.1:8888/lab?token"| wc -l)" != "1" ]; do
-#  printf "."
-#  sleep 1
-#done
+docker run -it --name jupyter --rm -p 8888:8888 -v "$dir":/home/jovyan/work -d jupyter/datascience-notebook \
+    start-notebook.sh --NotebookApp.password='argon2:$argon2id$v=19$m=10240,t=10,p=8$cIQ7S1OapqyvWzmH636CsA$fh0xOdGwdwv6/cxW5Bqi2mPZuSZlG0zGLwcxl7Ulvac'
 
 echo ""
-echo ""
-echo "   Senha: "
-echo "my-password"
+echo "   Senha: admin"
 
-#docker logs jupyter | grep "     or http://127.0.0.1:8888/lab?token"
