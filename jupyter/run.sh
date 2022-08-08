@@ -2,7 +2,9 @@
 
 echo "Executando Jupyter Notebook para análise e transformação dos dados"
 
-docker run -it --name jupyter --rm -p 8888:8888 -v "../":/home/jovyan/work jupyter/datascience-notebook
+dir=`pwd`; dir="$(dirname "$dir")"; echo $dir;
+
+docker run -it --name jupyter --rm -p 8888:8888 -v "$dir":/home/jovyan/work jupyter/datascience-notebook
 
 
 echo ""
