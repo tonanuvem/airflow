@@ -19,6 +19,8 @@ Exemplo de uso do Airflow em DataOps
 
 Providers:
 > https://airflow.apache.org/docs/apache-airflow-providers-apache-hive/2.3.3/_api/airflow/providers/apache/hive/index.html
+<br> <br>
+> https://github.com/apache/airflow/blob/providers-apache-hive/3.0.0/tests/system/providers/apache/hive/example_twitter_dag.py
 
 <br>
 
