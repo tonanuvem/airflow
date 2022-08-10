@@ -16,10 +16,11 @@ Exemplo de uso do Airflow em DataOps
 > https://www.projectpro.io/recipes/migrate-data-from-mysql-hive-using-airflow
 
 <br> 
+
 Providers:
 > https://airflow.apache.org/docs/apache-airflow-providers-apache-hive/2.3.3/_api/airflow/providers/apache/hive/index.html
 
-<br>
+<br> <br>
 
 Consumindo dados do Hive via python:
 
