@@ -20,7 +20,7 @@ Exemplo de uso do Airflow em DataOps
 Providers:
 > https://airflow.apache.org/docs/apache-airflow-providers-apache-hive/2.3.3/_api/airflow/providers/apache/hive/index.html
 
-<br> <br>
+<br>
 
 Consumindo dados do Hive via python:
 
