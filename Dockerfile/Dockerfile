@@ -52,4 +52,6 @@ RUN echo "[supervisord]" >> /etc/supervisord.conf && \
     echo "stderr_logfile=/dev/stderr" >> /etc/supervisord.conf && \
     echo "stderr_logfile_maxbytes=0" >> /etc/supervisord.conf
 
+COPY ../dags /opt/airflow/dags
+
 ENTRYPOINT ["./entrypoint.sh"]
