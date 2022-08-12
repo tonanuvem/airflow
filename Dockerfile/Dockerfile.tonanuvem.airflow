@@ -1,8 +1,10 @@
-FROM apache/airflow
+FROM apache/airflow:2.3.3-python3.10
 #FROM akkidx/airflow:blog1
 
-RUN pip install --no-cache-dir apache-airflow-providers-docker
-RUN pip install --no-cache-dir apache-airflow-providers-apache-hive
+RUN python -m pip install --upgrade pip
+
+RUN pip install apache-airflow-providers-docker
+RUN pip install apache-airflow-providers-apache-hive
 
 COPY --chown=airflow:root ./dags/mysql_to_hive.py /opt/airflow/dags
 COPY --chown=airflow:root ./dags/swarm_operator.py /opt/airflow/dags
