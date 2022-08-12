@@ -1,6 +1,18 @@
 version: '3'
 services:
 
+  # VISUALIZADOR DO CLUSTER
+  visualizador:
+    image: dockersamples/visualizer
+    volumes:
+    - "/var/run/docker.sock:/var/run/docker.sock"
+    ports:
+    - 8080:8080
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
+
   # AIRFLOW DATABASE
   postgres:
     image: postgres:9.6-alpine
