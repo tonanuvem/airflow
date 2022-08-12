@@ -1,4 +1,8 @@
-FROM akkidx/airflow:blog1
+FROM apache/airflow
+#FROM akkidx/airflow:blog1
 
-ADD ./dags/mysql_to_hive.py /opt/airflow/dags/mysql_to_hive.py
-ADD ./dags/swarm_operator.py /opt/airflow/dags/swarm_operator.py
+RUN pip install --no-cache-dir apache-airflow-providers-docker
+RUN pip install --no-cache-dir apache-airflow-providers-apache-hive
+
+COPY --chown=airflow:root ./dags/mysql_to_hive.py /opt/airflow/dags
+COPY --chown=airflow:root ./dags/swarm_operator.py /opt/airflow/dags
