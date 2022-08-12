@@ -1,11 +1,11 @@
-docker stack deploy --compose-file stack.yml etl
+docker stack deploy --compose-file etl.yml etl
 
 sleep 5
 
 echo ""
 echo ""
 
-docker stack ps etl --no-trunc
+docker stack ps etl
 
 echo "Aguardando 60 seg para verificar novamente:"
 echo ""
