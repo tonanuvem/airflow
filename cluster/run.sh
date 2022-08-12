@@ -7,7 +7,8 @@ echo ""
 
 docker stack ps etl
 
-echo "Aguardando 60 seg para verificar novamente:"
+echo ""
+echo "Aguardando 60 seg para verificar os status novamente:"
 echo ""
 
 sleep 60
