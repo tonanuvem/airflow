@@ -68,3 +68,6 @@ services:
       - mysqldata:/var/lib/mysql
       - "./mysql_init_database.sql:/docker-entrypoint-initdb.d/init-database.sql"
       - "./mysql.cnf:/etc/mysql/conf.d/mysql.cnf"
+
+volumes:
+  mysqldata:
