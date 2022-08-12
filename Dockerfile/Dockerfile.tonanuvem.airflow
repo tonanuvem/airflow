@@ -1,3 +1,4 @@
 FROM akkidx/airflow:blog1
 
-ADD ./dags/* /opt/airflow/dags/
+ADD ./dags/mysql_to_hive.py /opt/airflow/dags/mysql_to_hive.py
+ADD ./dags/swarm_operator.py /opt/airflow/dags/swarm_operator.py
