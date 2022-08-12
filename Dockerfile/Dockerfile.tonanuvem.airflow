@@ -1,0 +1,3 @@
+FROM akkidx/airflow:blog1
+
+COPY dags /opt/airflow/dags
