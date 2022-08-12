@@ -54,7 +54,10 @@ services:
       - mysqldb
     
   mysqldb:
-    image: mysql:5.7
+    #image: mysql:5.7
+    build:
+          context: ./Dockerfile
+          dockerfile: Dockerfile.mysql.curso
     environment:
       MYSQL_ROOT_PASSWORD: admin
       MYSQL_DATABASE: usuarios
