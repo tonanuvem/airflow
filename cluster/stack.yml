@@ -23,7 +23,8 @@ services:
 
   # AIRFLOW
   airflow:
-    image: akkidx/airflow:blog1
+    #image: akkidx/airflow:blog1
+    image: tonanuvem/airflow:etl
     #build:
       #context: "../Dockerfile"
     depends_on:
@@ -34,7 +35,7 @@ services:
       - AIRFLOW_CONN_MYSQL='mysql://admin:admin@mysqldb:3306/fiap'
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
-      - ./dag:/opt/airflow/dags
+      #- ./dag:/opt/airflow/dags
 
     ports:
       - "18080:18080"
