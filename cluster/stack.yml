@@ -58,7 +58,7 @@ services:
     image: tonanuvem/mysql:curso
     environment:
       MYSQL_ROOT_PASSWORD: admin
-      MYSQL_DATABASE: usuarios
+      MYSQL_DATABASE: fiap
       MYSQL_USER: admin
       MYSQL_PASSWORD: admin
     ports:
