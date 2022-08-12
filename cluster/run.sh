@@ -1,1 +1,1 @@
-docker stack deploy --compose-file stack.yml airflow
+docker stack deploy --compose-file stack.yml etl
