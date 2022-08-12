@@ -55,7 +55,7 @@ services:
     
   mysqldb:
     #image: mysql:5.7
-    image: tonanuvem/mysql:curso
+    image: tonanuvem/mysql:curso_db
     environment:
       MYSQL_ROOT_PASSWORD: admin
       MYSQL_DATABASE: fiap
