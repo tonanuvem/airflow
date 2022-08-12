@@ -1,6 +1,6 @@
 docker stack deploy --compose-file etl.yml etl
 
-sleep 5
+sleep 10
 
 echo ""
 echo ""
