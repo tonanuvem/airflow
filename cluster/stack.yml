@@ -67,8 +67,8 @@ services:
       - "3306:3306"
     volumes:
       - mysqldata:/var/lib/mysql
-      - "./mysql_init_database.sql:/docker-entrypoint-initdb.d/init-database.sql"
-      - "./mysql.cnf:/etc/mysql/conf.d/mysql.cnf"
+      #- "./mysql_init_database.sql:/docker-entrypoint-initdb.d/init-database.sql"
+      #- "./mysql.cnf:/etc/mysql/conf.d/mysql.cnf"
 
 # https://stackoverflow.com/questions/45282608/how-to-directly-mount-nfs-share-volume-in-container-using-docker-compose-v3
 volumes:
