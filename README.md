@@ -27,3 +27,10 @@ Providers:
 Consumindo dados do Hive via python:
 
 > https://github.com/dropbox/PyHive
+
+
+<br>
+
+Formas de controlar a carga : FULL x DIFERENCIAL:
+
+> https://docs.hevodata.com/data-ingestion/query-modes-for-ingesting-data/
