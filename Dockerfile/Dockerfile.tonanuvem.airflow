@@ -16,5 +16,5 @@ RUN pip install --upgrade pip
 #COPY --chown=airflow:root ./dags/mysql_to_hive.py /opt/airflow/dags
 #COPY --chown=airflow:root ./dags/swarm_operator.py /opt/airflow/dags
 
-COPY ./dags/mysql_to_hive.py /opt/airflow/dags
-COPY ./dags/swarm_operator.py /opt/airflow/dags
+COPY ./dags/mysql_to_hive.py /opt/airflow/dags/mysql_to_hive.py
+COPY ./dags/swarm_operator.py /opt/airflow/dags/swarm_operator.py
