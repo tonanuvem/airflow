@@ -27,6 +27,8 @@ Providers:
 Consumindo dados do Hive via python:
 
 > https://github.com/dropbox/PyHive
+<br><br>
+> https://github.com/big-data-europe/docker-hive
 
 
 <br>
