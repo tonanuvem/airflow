@@ -9,6 +9,7 @@ O usuário pode lê-lo em um dataframe pandas e executar várias operações de 
 
 
 # Etapa 1: Importando módulos: importe as dependências do Python necessárias para o fluxo de trabalho.
+# https://github.com/apache/airflow/blob/main/airflow/providers/apache/hive/transfers/mysql_to_hive.py
 import airflow
 from datetime import timedelta
 from airflow import DAG
