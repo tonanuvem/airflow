@@ -6,7 +6,10 @@ RUN python -m pip install --upgrade pip
 
 RUN pip install apache-airflow-providers-docker
 #RUN pip install sasl, thrift, pyhive, pure-sasl
-RUN pip install sasl
+
+#RUN pip install sasl
+RUN apt-get install libsasl2-dev libsasl2-2 libsasl2-modules-gssapi-mit
+
 RUN pip install pure-sasl
 #RUN pip install apache-airflow-providers-apache-hive
 
