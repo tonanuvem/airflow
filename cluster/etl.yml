@@ -23,8 +23,8 @@ services:
 
   # AIRFLOW
   airflow:
-    image: akkidx/airflow:blog1
-    #image: tonanuvem/airflow:etl
+    #image: akkidx/airflow:blog1
+    image: tonanuvem/airflow:etl
     #build:
       #context: "../Dockerfile"
     depends_on:
