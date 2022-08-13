@@ -36,3 +36,21 @@ Consumindo dados do Hive via python:
 Formas de controlar a carga : FULL x DIFERENCIAL:
 
 > https://docs.hevodata.com/data-ingestion/query-modes-for-ingesting-data/
+
+<br>
+
+Executando local:
+'''
+airflow db init
+
+airflow users create \
+    --username admin \
+    --firstname Peter \
+    --lastname Parker \
+    --role Admin \
+    --email spiderman@superhero.org
+
+airflow webserver --port 8080
+
+airflow scheduler
+'''
