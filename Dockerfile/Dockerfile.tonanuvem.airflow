@@ -9,7 +9,6 @@ RUN apt-get update \
          libsasl2-dev \
          libsasl2-modules-gssapi-mit \
          build-essential \
-         libsasl2-dev \
          nano \
   && apt-get autoremove -yqq --purge \
   && apt-get clean \
