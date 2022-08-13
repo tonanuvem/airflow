@@ -27,7 +27,7 @@ default_args = {
 # Etapa 3: instanciar um DAG: dê o nome do DAG, configure o agendamento e defina as configurações do DAG
 dag_execute_prep_commands = DAG(
     dag_id='execute_prep_commands',
-    default_args,
+    #default_args=None,
     # schedule_interval='0 0 * * *',
     schedule_interval='@once',
     start_date=days_ago(1),
