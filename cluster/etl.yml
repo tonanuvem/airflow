@@ -40,7 +40,7 @@ services:
       #- ./dag:/opt/airflow/dags
 
     ports:
-      - "18080:18080"
+      - "18080:8080"
 
   # CURSO DATABASE : exemplo MySQL
   phpmyadmin:
