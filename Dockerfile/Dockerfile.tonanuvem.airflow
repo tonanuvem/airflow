@@ -1,23 +1,23 @@
-#FROM apache/airflow:latest-python3.6
 FROM apache/airflow:2.3.3-python3.10
-#FROM akkidx/airflow:blog1
 
-RUN pip install --upgrade pip
+USER root
 
-#RUN pip install apache-airflow-providers-docker
-#RUN pip install sasl, thrift, pyhive, pure-sasl
+RUN apt-get update \
+  && apt-get install -y --no-install-recommends \
+         libxt-dev \
+         default-jdk \
+         libsasl2-dev \
+         libsasl2-modules-gssapi-mit \
+         build-essential \
+         libsasl2-dev \
+  && apt-get autoremove -yqq --purge \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
 
-#RUN pip install sasl
-#RUN sudo apt-get install libsasl2-dev libsasl2-2 libsasl2-modules-gssapi-mit
+USER airflow
 
-#RUN pip install pure-sasl
-RUN pip install apache-airflow-providers-apache-hive
-
-#COPY --chown=airflow:root ./dags/mysql_to_hive.py /opt/airflow/dags
-#COPY --chown=airflow:root ./dags/swarm_operator.py /opt/airflow/dags
+RUN pip3 install --no-cache-dir apache-airflow-providers-docker
+RUN pip3 install --no-cache-dir apache-airflow-providers-apache-hive
 
 COPY ./dags/mysql_to_hive.py /opt/airflow/dags/mysql_to_hive.py
 COPY ./dags/swarm_operator.py /opt/airflow/dags/swarm_operator.py
-
-COPY ./dags/mysql_to_hive.py /root/airflow/dags/mysql_to_hive.py
-COPY ./dags/swarm_operator.py /root/airflow/dags/swarm_operator.py
