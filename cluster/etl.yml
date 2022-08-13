@@ -35,6 +35,9 @@ services:
       #- AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgres://admin:admin@postgres/airflow
       #- AIRFLOW__CORE__EXECUTOR=LocalExecutor
       - AIRFLOW_CONN_MYSQLDB_CURSO='mysql://admin:admin@mysqldb:3306/fiap'
+      - _AIRFLOW_WWW_USER_USERNAME=admin
+      - _AIRFLOW_WWW_USER_PASSWORD=admin
+      #- _PIP_ADDITIONAL_REQUIREMENTS
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
       #- ./dag:/opt/airflow/dags
