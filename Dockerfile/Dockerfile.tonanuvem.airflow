@@ -17,9 +17,12 @@ RUN apt-get update \
 
 USER airflow
 
-RUN pip3 install --no-cache-dir apache-airflow-providers-mysql
-RUN pip3 install --no-cache-dir apache-airflow-providers-docker
-RUN pip3 install --no-cache-dir apache-airflow-providers-apache-hive
+RUN python -m pip install --upgrade pip
+
+RUN pip install --no-cache-dir apache-airflow-providers-mysql
+RUN pip install --no-cache-dir apache-airflow-providers-docker
+RUN pip install --no-cache-dir apache-airflow-providers-apache-hive
+
 
 COPY ./dags/mysql_to_hive.py /opt/airflow/dags/mysql_to_hive.py
 COPY ./dags/swarm_operator.py /opt/airflow/dags/swarm_operator.py
