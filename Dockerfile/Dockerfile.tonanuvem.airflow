@@ -17,7 +17,7 @@ RUN apt-get update \
 
 USER airflow
 
-RUN pip3 install -no-cache-dir apache-airflow-providers-mysql
+RUN pip3 install --no-cache-dir apache-airflow-providers-mysql
 RUN pip3 install --no-cache-dir apache-airflow-providers-docker
 RUN pip3 install --no-cache-dir apache-airflow-providers-apache-hive
 
