@@ -2,7 +2,7 @@
 #FROM apache/airflow:2.3.3-python3.10
 FROM akkidx/airflow:blog1
 
-#RUN pip install --upgrade pip
+RUN pip install --upgrade pip
 
 #RUN pip install apache-airflow-providers-docker
 #RUN pip install sasl, thrift, pyhive, pure-sasl
