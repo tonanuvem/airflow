@@ -1,6 +1,6 @@
 #FROM apache/airflow:latest-python3.6
-FROM apache/airflow:2.3.3-python3.10
-#FROM akkidx/airflow:blog1
+#FROM apache/airflow:2.3.3-python3.10
+FROM akkidx/airflow:blog1
 
 RUN python -m pip install --upgrade pip
 
