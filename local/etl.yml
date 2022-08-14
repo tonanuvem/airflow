@@ -1,0 +1,54 @@
+version: '3'
+services:
+
+  # AIRFLOW
+  airflow:
+    image: tonanuvem/airflow:etl
+    command: standalone
+    # command: webserver
+    environment:
+      #- AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgres://admin:admin@postgres/airflow
+      #- AIRFLOW__CORE__EXECUTOR=LocalExecutor
+      - AIRFLOW_CONN_MYSQLDB_CURSO='mysql://admin:admin@mysqldb:3306/fiap'
+      - _AIRFLOW_WWW_USER_USERNAME=admin
+      - _AIRFLOW_WWW_USER_PASSWORD=admin
+      #- _PIP_ADDITIONAL_REQUIREMENTS
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "../dags:/opt/airflow/dags
+
+    ports:
+      - "18080:8080"
+
+  # CURSO DATABASE : exemplo MySQL
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: mysqldb
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+      PMA_USER: admin
+      PMA_PASSWORD: admin
+    ports:
+      - 8082:80  
+    depends_on: 
+      - mysqldb
+    
+  mysqldb:
+    #image: mysql:5.7
+    image: tonanuvem/mysql:curso_db
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: fiap
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysqldata:/var/lib/mysql
+      #- "./mysql_init_database.sql:/docker-entrypoint-initdb.d/init-database.sql"
+      #- "./mysql.cnf:/etc/mysql/conf.d/mysql.cnf"
+
+# https://stackoverflow.com/questions/45282608/how-to-directly-mount-nfs-share-volume-in-container-using-docker-compose-v3
+volumes:
+  mysqldata:
