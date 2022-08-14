@@ -47,10 +47,11 @@ load_mysql_to_hive = MySqlToHiveOperator(
                 create = True,
                 mysql_conn_id = "local_mysql",
                 task_id = "load_mysql_to_hive",
-            hive_cli_conn_id = "hive_local",
-            dag = dag_mysql_to_hive)
+            hive_cli_conn_id = "hive_local")#,
+            #dag = dag_mysql_to_hive)
             
 # Etapa 5: Configurando Dependências: aqui estamos Configurando as dependências ou a ordem em que as tarefas devem ser executadas.
 load_mysql_to_hive
-if __name__ == '__main__ ':
-  dag_mysql_to_hive.cli()
+#if __name__ == '__main__ ':
+  #dag_mysql_to_hive.cli()
+  
