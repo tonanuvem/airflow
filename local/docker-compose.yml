@@ -1,14 +1,22 @@
 version: '3'
 services:
-
+  # AIRFLOW DATABASE
+  postgres:
+    image: postgres:9.6-alpine
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=airflow
+      
   # AIRFLOW
   airflow:
-    image: apache/airflow:2.3.3-python3.10
+    #image: apache/airflow:2.3.3-python3.10
+    image: tonanuvem/airflow:hive
     command: standalone
     # command: webserver
     environment:
-      #- AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgres://admin:admin@postgres/airflow
-      #- AIRFLOW__CORE__EXECUTOR=LocalExecutor
+      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgres://admin:admin@postgres/airflow
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
       - AIRFLOW_CONN_MYSQLDB_CURSO='mysql://admin:admin@mysqldb:3306/fiap'
       - _AIRFLOW_WWW_USER_USERNAME=admin
       - _AIRFLOW_WWW_USER_PASSWORD=admin
@@ -35,8 +43,8 @@ services:
       - mysqldb
     
   mysqldb:
-    #image: mysql:5.7
-    image: tonanuvem/mysql:curso_db
+    image: mysql:5.7
+    #image: tonanuvem/mysql:curso_db
     environment:
       MYSQL_ROOT_PASSWORD: admin
       MYSQL_DATABASE: fiap
