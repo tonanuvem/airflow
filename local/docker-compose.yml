@@ -3,7 +3,7 @@ services:
 
   # AIRFLOW
   airflow:
-    image: apache/airflow:slim-2.3.3-python3.10
+    image: apache/airflow:2.3.3-python3.10
     command: standalone
     # command: webserver
     environment:
