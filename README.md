@@ -21,6 +21,8 @@ Providers:
 > https://airflow.apache.org/docs/apache-airflow-providers-apache-hive/2.3.3/_api/airflow/providers/apache/hive/index.html
 <br> <br>
 > https://github.com/apache/airflow/blob/providers-apache-hive/3.0.0/tests/system/providers/apache/hive/example_twitter_dag.py
+<br><br>
+> https://github.com/apache/airflow/blob/providers-apache-hive/3.0.0/airflow/providers/apache/hive/transfers/mysql_to_hive.py
 
 <br>
 
