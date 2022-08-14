@@ -8,6 +8,8 @@ from airflow import DAG
 from airflow.decorators import task
 from airflow.operators.bash import BashOperator
 from airflow.providers.apache.hive.operators.hive import HiveOperator
+from airflow.providers.apache.hive.transfers.mysql_to_hive import MySqlToHiveOperator
+MySqlToHiveOperator
 
 ENV_ID = os.environ.get("SYSTEM_TESTS_ENV_ID")
 DAG_ID = "hive_dag"
