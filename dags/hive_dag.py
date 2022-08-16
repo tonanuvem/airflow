@@ -102,7 +102,7 @@ with DAG(
         )
         # [END create_hive]
 
-        analyze >> load_to_hdfs >> load_to_hive >> hive_to_mysql
+        analyze >> load_to_hdfs >> load_to_hive #>> hive_to_mysql
 
     for channel in from_channels:
         file_name = f"from_{channel}_{dt}.csv"
@@ -122,7 +122,7 @@ with DAG(
             ),
         )
 
-        analyze >> load_to_hdfs >> load_to_hive >> hive_to_mysql
+        analyze >> load_to_hdfs >> load_to_hive #>> hive_to_mysql
 
     from tests.system.utils.watcher import watcher
 
