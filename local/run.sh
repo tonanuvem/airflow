@@ -1,7 +1,7 @@
 docker-compose up -d
 echo ""
 echo "Aguardando a configuração."
-while [ "$(docker logs local-airflow-1 2>&1 | grep ""Login with username: admin"" | wc -l)" != "1" ]; do
+while [ "$(docker logs local-airflow-1 2>&1 | grep "Login with username: admin" | wc -l)" != "1" ]; do
   printf "."
   sleep 1
 done
