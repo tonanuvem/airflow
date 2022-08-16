@@ -6,6 +6,8 @@ while [ "$(docker logs local-airflow-1 2>&1 | grep "Login with username: admin" 
   sleep 1
 done
 docker exec -ti local-airflow-1 airflow users create --role Admin --username fiap --email fiap --firstname fiap --lastname fiap --password fiap
+echo ""
+echo ""
 echo "Config OK"
 IP=$(curl -s checkip.amazonaws.com)
 echo ""
