@@ -12,14 +12,14 @@ services:
   airflow:
     #image: apache/airflow:2.3.3-python3.10
     image: tonanuvem/airflow:hive
-    command: standalone
+    command: standalone && airflow users create --role Admin --username fiap --email fiap --firstname fiap --lastname fiap --password fiap
     # command: webserver
     environment:
-      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgres://admin:admin@postgres/airflow
+      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql://admin:admin@postgres/airflow
       - AIRFLOW__CORE__EXECUTOR=LocalExecutor
       - AIRFLOW_CONN_MYSQLDB_CURSO='mysql://admin:admin@mysqldb:3306/fiap'
-      - _AIRFLOW_WWW_USER_USERNAME=admin
-      - _AIRFLOW_WWW_USER_PASSWORD=admin
+      #- _AIRFLOW_WWW_USER_USERNAME=admin
+      #- _AIRFLOW_WWW_USER_PASSWORD=admin
       #- _PIP_ADDITIONAL_REQUIREMENTS
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock"
