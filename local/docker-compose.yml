@@ -12,7 +12,7 @@ services:
   airflow:
     #image: apache/airflow:2.3.3-python3.10
     image: tonanuvem/airflow:hive
-    command: standalone && airflow users create --role Admin --username fiap --email fiap --firstname fiap --lastname fiap --password fiap
+    command: standalone
     # command: webserver
     environment:
       - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql://admin:admin@postgres/airflow
