@@ -61,7 +61,7 @@ with DAG(
     transform = transform_curso()
     #hive_to_mysql = transfer_to_db()
 
-    fetch_from_mysql >> clean >> analyze
+    fetch_from_mysql >> clean >> transform
 
     # --------------------------------------------------------------------------------
     # The following tasks are generated using for loop. The first task puts the eight
