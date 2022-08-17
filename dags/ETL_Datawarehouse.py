@@ -126,6 +126,8 @@ with DAG(
     extrair_dados() >> clean_dados() >> transformar_dados() >> carregar_para_dw()
     
     ''' # outra forma de declarar as operacoes:
+    from airflow.operators.python import PythonOperator
+
     select_from_mysql = = PythonOperator(
         task_id="extrair_dados",
         python_callable=extrair_dados,
