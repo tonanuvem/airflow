@@ -1,3 +1,5 @@
+docker run -d -p 28080:8088 --name superset apache/superset
+
 # Setup your local admin account
 
 docker exec -it superset_app superset fab create-admin \
