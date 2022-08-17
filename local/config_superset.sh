@@ -1,4 +1,4 @@
-docker run -d -p 28080:8088 --name superset_app --net local_default apache/superset
+docker run -d -p 28080:8088 --name superset_app -v "../superset:/app/superset_home/superset --net local_default apache/superset
 
 # Setup your local admin account
 
@@ -15,6 +15,10 @@ docker exec -it superset_app superset db upgrade
 
 #Load Examples
 # docker exec -it superset_app superset load_examples
+
+
+#Load Dashboards
+# docker exec -it superset_app superset import-dashboards -p /app/superset_home/superset/dashboard_aula.zip
 
 # Setup roles
 
