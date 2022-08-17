@@ -11,6 +11,7 @@ RUN apt-get update \
          libsasl2-modules-gssapi-mit \
          build-essential \
          nano \
+         vi \
   && apt-get autoremove -yqq --purge \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
@@ -23,6 +24,8 @@ RUN pip install --no-cache-dir apache-airflow-providers-mysql
 RUN pip install --no-cache-dir apache-airflow-providers-docker
 RUN pip install --no-cache-dir apache-airflow-providers-apache-hive
 
+RUN pip install --no-cache-dir pymysql
 
-COPY ./dags/mysql_to_hive.py /opt/airflow/dags/mysql_to_hive.py
-COPY ./dags/swarm_operator.py /opt/airflow/dags/swarm_operator.py
+
+#COPY ./dags/mysql_to_hive.py /opt/airflow/dags/mysql_to_hive.py
+#COPY ./dags/swarm_operator.py /opt/airflow/dags/swarm_operator.py
