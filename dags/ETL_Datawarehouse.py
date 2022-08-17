@@ -106,6 +106,11 @@ def carregar_para_dw():
     import pandas as pd
     df = pd.read_csv(CSV_TRANSFORM)
 
+    # carregar dados na ferramenta DW (neste exemplo = postgres)
+    from sqlalchemy import create_engine
+    postgres = create_engine('postgresql://admin:admin@postgres:5432/datawarehouse')
+    df.to_sql('dw', postgres)
+
 # instanciar fluxo do DAG e suas configs
 with DAG(
     dag_id=DAG_ID,
