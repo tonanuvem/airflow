@@ -28,6 +28,7 @@ def extrair_dados():
 
     # le os dados
     df=sql.read_sql('select * from fiap.curso',con)
+    print(df.info())
 
     # exportar dados para a próxima task
     df.to_csv(CSV_FILE, encoding='utf-8-sig')
