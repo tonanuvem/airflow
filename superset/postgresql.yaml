@@ -1,0 +1,15 @@
+database_name: PostgreSQL
+sqlalchemy_uri: postgresql+psycopg2://admin:admin@postgres:5432/airflow
+cache_timeout: null
+expose_in_sqllab: true
+allow_run_async: false
+allow_ctas: false
+allow_cvas: false
+allow_csv_upload: false
+extra:
+  allows_virtual_table_explore: true
+  metadata_params: {}
+  engine_params: {}
+  schemas_allowed_for_csv_upload: []
+uuid: 940ffcfc-542b-4fad-a1d1-9300b54656bf
+version: 1.0.0
