@@ -28,9 +28,9 @@ def extrair_dados():
 
     # le os dados
     df=sql.read_sql('select * from fiap.curso',con)
-    print(df.info())
 
     # exportar dados para a próxima task
+    print(df.info()) # log
     df.to_csv(CSV_FILE, encoding='utf-8-sig')
 
 @task
@@ -38,6 +38,7 @@ def clean_dados():
     """
     Esta é uma tarefa responsável por limpar os dados. Nesta etapa, podemos limpar por ex colunas e dados nulos, formatos de datas invalidas, etc.
     """
+    import pandas as pd
     df = pd.read_csv(CSV_FILE)
     
     # 1) eliminar matrículas duplicadas
@@ -47,6 +48,7 @@ def clean_dados():
     df["NOTA_MAT_4"].fillna(0, inplace = True)
 
     # exportar dados para a próxima task
+    print(df.info()) # log
     df.to_csv(CSV_CLEAN, encoding='utf-8-sig')
 
 @task
@@ -54,6 +56,7 @@ def transformar_dados():
     """
     Esta é uma tarefa responsável por agregar e transformar dados. Nesta etapa, podemos por ex criar novas colunas.
     """
+    import pandas as pd
     df = pd.read_csv(CSV_CLEAN)
     
     # 3) inserir coluna descritiva sobre os alunos que falam ingles, ajustando valores nulos
@@ -92,6 +95,7 @@ def transformar_dados():
     df['CURSOU_MAT4_DESC'] = np.select(conditions_MAT4, choices)
 
     # exportar dados para a próxima task
+    print(df.info()) # log
     df.to_csv(CSV_TRANSFORM, encoding='utf-8-sig')
     
 @task
@@ -99,6 +103,7 @@ def carregar_para_dw():
     """
     Esta é uma tarefa responsável por carregar os dados no DW (Hive).
     """
+    import pandas as pd
     df = pd.read_csv(CSV_TRANSFORM)
 
 # instanciar fluxo do DAG e suas configs
