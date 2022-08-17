@@ -5,10 +5,12 @@ from airflow import DAG
 from airflow.decorators import task
 from airflow.utils.dates import days_ago
 from airflow.providers.apache.hive.operators.hive import HiveOperator
-import pandas as pd
 
 DAG_ID = "ETL_Datawarehouse"
-CSV_FILE = "curso_from_mysql.csv"
+CSV_ID = datetime.date.today().strftime("%Y_%m_%d") # ex: 2022_08_17
+CSV_FILE = CSV_ID + "_curso_from_mysql.csv"
+CSV_CLEAN = CSV_ID + "_CLEAN" + "curso_from_mysql.csv"
+CSV_TRANSFORM = CSV_ID + "_TRANSFORM" + "curso_from_mysql.csv"
 
 # Configurar as tarefas que serão usadas no fluxo de trabalho (DAG).
 @task
@@ -22,13 +24,13 @@ def extrair_dados():
     from pymysql import connect
     import pandas.io.sql as sql
 
-    # connect the mysql with the python
+    # conecta ao mysql via python
     con=connect(user="admin",password="admin",host="mysqldb",database="fiap")
 
-    # read the data
+    # le os dados
     df=sql.read_sql('select * from fiap.curso',con)
 
-    # export the data into the excel sheet
+    # exportar dados para a próxima task
     df.to_csv(CSV_FILE, encoding='utf-8-sig')
 
 @task
@@ -41,16 +43,20 @@ def clean_dados():
     # 1) eliminar matrículas duplicadas
     df = df.drop_duplicates(subset='MATRICULA', keep="first")
 
-    # 3) resolver o que fazer com os valores nulos da materia 4 : trocar NaN por 0
+    # 2) resolver o que fazer com os valores nulos da materia 4 : trocar NaN por 0
     df["NOTA_MAT_4"].fillna(0, inplace = True)
+
+    # exportar dados para a próxima task
+    df.to_csv(CSV_CLEAN, encoding='utf-8-sig')
 
 @task
 def transformar_dados():
     """
     Esta é uma tarefa responsável por agregar e transformar dados. Nesta etapa, podemos por ex criar novas colunas.
     """
-
-    # 2) inserir coluna descritiva sobre os alunos que falam ingles, ajustando valores nulos
+    df = pd.read_csv(CSV_CLEAN)
+    
+    # 3) inserir coluna descritiva sobre os alunos que falam ingles, ajustando valores nulos
     import numpy as np
     df["INGLES"].fillna(-1, inplace = True)
     conditions = [df['INGLES'] > 0, df['INGLES'] == 0, df['INGLES'] < 0]
@@ -85,11 +91,15 @@ def transformar_dados():
     df['CURSOU_MAT3_DESC'] = np.select(conditions_MAT3, choices)
     df['CURSOU_MAT4_DESC'] = np.select(conditions_MAT4, choices)
 
+    # exportar dados para a próxima task
+    df.to_csv(CSV_TRANSFORM, encoding='utf-8-sig')
+    
 @task
 def carregar_para_dw():
     """
     Esta é uma tarefa responsável por carregar os dados no DW (Hive).
     """
+    df = pd.read_csv(CSV_TRANSFORM)
 
 # instanciar fluxo do DAG e suas configs
 with DAG(
@@ -105,9 +115,23 @@ with DAG(
 ) as dag:
     extrair_dados() >> clean_dados() >> transformar_dados() >> carregar_para_dw()
     
-    #select_from_mysql = extrair_dados()
-    #clean = clean_dados()
-    #transform = transformar_dados()
-    #load_to_hive = carregar_para_dw()
+    ''' # outra forma de declarar as operacoes:
+    select_from_mysql = = PythonOperator(
+        task_id="extrair_dados",
+        python_callable=extrair_dados,
+    )
+    clean = = PythonOperator(
+        task_id="clean_dados",
+        python_callable=clean_dados,
+    )
+    transform = = PythonOperator(
+        task_id="transformar_dados",
+        python_callable=transformar_dados,
+    )
+    load_to_hive = = PythonOperator(
+        task_id="carregar_para_dw",
+        python_callable=carregar_para_dw,
+    )
 
-    #select_from_mysql >> clean >> transform >> load_to_hive
+    select_from_mysql >> clean >> transform >> load_to_hive
+    '''
