@@ -5,6 +5,7 @@ from airflow import DAG
 from airflow.decorators import task
 from airflow.utils.dates import days_ago
 from airflow.providers.apache.hive.operators.hive import HiveOperator
+import pandas as pd
 
 DAG_ID = "ETL_Datawarehouse"
 CSV_FILE = "curso_from_mysql.csv"
