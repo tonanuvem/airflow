@@ -110,7 +110,9 @@ def carregar_para_dw():
     from sqlalchemy import create_engine
     dw = create_engine('mysql://admin:admin@mysqldb:3306/fiap')
     #dw = create_engine('postgresql://admin:admin@postgres:5432/airflow')
+    print('Conexão aberta com o DW, tentando salvar os dados')
     df.to_sql('datawarehouse', dw)
+    print('Dados salvos com sucesso no DW')
 
 # instanciar fluxo do DAG e suas configs
 with DAG(
