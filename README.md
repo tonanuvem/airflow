@@ -13,6 +13,8 @@ Exemplo de uso do Airflow em DataOps
 <br> <br>
 https://towardsdatascience.com/airflow-sharing-data-between-tasks-7bbaa27eeb1
 <br> <br>
+https://airflow.apache.org/docs/apache-airflow/stable/best-practices.html#communication
+<br> <br>
 > https://www.projectpro.io/recipes/schedule-dag-file-create-table-and-load-data-into-it-mysql-and-hive-airflow
 <br> <br>
 > https://www.projectpro.io/recipes/migrate-data-from-mysql-hive-using-airflow
