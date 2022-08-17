@@ -43,8 +43,8 @@ services:
       - mysqldb
     
   mysqldb:
-    #image: mysql:5.7
-    image: tonanuvem/mysql:curso_db
+    #image: mysql:5.7 # bd vazio, sobe mais rapido
+    image: tonanuvem/mysql:curso_db # bd com a tabela curso
     environment:
       MYSQL_ROOT_PASSWORD: admin
       MYSQL_DATABASE: fiap
