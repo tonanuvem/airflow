@@ -108,8 +108,8 @@ def carregar_para_dw():
 
     # carregar dados na ferramenta DW (neste exemplo = postgres)
     from sqlalchemy import create_engine
-    postgres = create_engine('postgresql://admin:admin@postgres:5432/datawarehouse')
-    df.to_sql('dw', postgres)
+    postgres = create_engine('postgresql://admin:admin@postgres:5432/airflow')
+    df.to_sql('datawarehouse', postgres)
 
 # instanciar fluxo do DAG e suas configs
 with DAG(
