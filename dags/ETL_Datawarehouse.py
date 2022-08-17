@@ -98,7 +98,7 @@ with DAG(
         'retries': 1,
     },
     schedule_interval="@daily",
-    start_date=airflow.utils.dates.days_ago(2),,
+    start_date=airflow.utils.dates.days_ago(1),
     tags=['ETL'],
     catchup=False,
 ) as dag:
