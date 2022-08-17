@@ -102,9 +102,11 @@ with DAG(
     tags=['ETL'],
     catchup=False,
 ) as dag:
-    select_from_mysql = extrair_dados()
-    clean = clean_dados()
-    transform = transformar_dados()
-    load_to_hive = carregar_para_dw()
+    extrair_dados() >> clean_dados() >> transformar_dados() >> carregar_para_dw()
+    
+    #select_from_mysql = extrair_dados()
+    #clean = clean_dados()
+    #transform = transformar_dados()
+    #load_to_hive = carregar_para_dw()
 
-    select_from_mysql >> clean >> transform >> load_to_hive
+    #select_from_mysql >> clean >> transform >> load_to_hive
