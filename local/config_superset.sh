@@ -23,3 +23,13 @@ docker exec -it superset_app superset db upgrade
 # Setup roles
 
 docker exec -it superset_app superset init
+
+echo ""
+echo ""
+echo "Config OK"
+IP=$(curl -s checkip.amazonaws.com)
+echo ""
+echo "URLs do projeto:"
+echo ""
+echo " - SUPERSET         : http://$IP:8088   (login = admin, password = admin)"
+echo ""
