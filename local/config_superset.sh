@@ -20,8 +20,9 @@ docker exec -it superset_app superset db upgrade
 # Setup roles
 docker exec -it superset_app superset init
 
-#echo "Load Dashboards"
-#docker exec -it superset_app superset import-dashboards -p /app/superset_home/superset/dashboard_ETL.zip
+echo "Loading Dashboard:"
+echo 
+docker exec -it superset_app superset import-dashboards -p /app/superset_home/superset/dashboard_ETL.zip
 
 echo ""
 echo ""
