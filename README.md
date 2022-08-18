@@ -35,7 +35,8 @@ Consumindo dados do Hive via python:
 > https://github.com/dropbox/PyHive
 <br><br>
 > https://github.com/big-data-europe/docker-hive
-
+<br><br>
+> https://hshirodkar.medium.com/apache-hive-on-docker-4d7280ac6f8e
 
 <br>
 
