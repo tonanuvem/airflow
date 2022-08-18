@@ -1,4 +1,6 @@
-docker run -d -p 28080:8088 --name superset_app -v "../superset:/app/superset_home/superset" --net local_default apache/superset
+dir=`pwd`; dir="$(dirname "$dir")"; echo $dir;
+
+docker run -d -p 28080:8088 --name superset_app -v "$dir/superset:/app/superset_home/superset" --net local_default apache/superset
 
 # Setup your local admin account
 
