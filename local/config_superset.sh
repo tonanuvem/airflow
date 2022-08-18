@@ -1,4 +1,4 @@
-docker run -d -p 28080:8088 --name superset_app -v "../superset:/app/superset_home/superset --net local_default apache/superset
+docker run -d -p 28080:8088 --name superset_app -v "../superset:/app/superset_home/superset" --net local_default apache/superset
 
 # Setup your local admin account
 
