@@ -12,18 +12,16 @@ docker exec -it superset_app superset fab create-admin \
               --password admin
 
 # Migrate local DB to latest
-
 docker exec -it superset_app superset db upgrade
 
 #Load Examples
 # docker exec -it superset_app superset load_examples
 
+# Setup roles
+docker exec -it superset_app superset init
 
 #Load Dashboards
 docker exec -it superset_app superset import-dashboards -p /app/superset_home/superset/dashboard_export_ETL.zip
-
-# Setup roles
-docker exec -it superset_app superset init
 
 echo ""
 echo ""
