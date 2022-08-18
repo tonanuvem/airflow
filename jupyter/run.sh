@@ -17,4 +17,4 @@ echo ""
 echo http://$(curl -s checkip.amazonaws.com):8888
 echo ""
 echo "   Senha: admin"
-
+echo ""
