@@ -105,7 +105,8 @@ def carregar_para_dw():
     """
     import pandas as pd
     df = pd.read_csv(CSV_TRANSFORM)
-
+    df.drop(df.filter(regex="Unname"),axis=1, inplace=True)
+    
     # carregar dados na ferramenta DW ( exemplos abaixo )
     from sqlalchemy import create_engine
     dw = create_engine('mysql://admin:admin@mysqldb:3306/fiap')
