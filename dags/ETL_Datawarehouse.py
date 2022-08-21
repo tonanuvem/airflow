@@ -105,14 +105,13 @@ def carregar_para_dw():
     """
     import pandas as pd
     df = pd.read_csv(CSV_TRANSFORM)
-    df.drop(df.filter(regex="Unname"),axis=1, inplace=True)
     
     # carregar dados na ferramenta DW ( exemplos abaixo )
     from sqlalchemy import create_engine
     dw = create_engine('mysql://admin:admin@mysqldb:3306/fiap')
     #dw = create_engine('postgresql://admin:admin@postgres:5432/airflow')
     print('Conexão aberta com o DW, tentando salvar os dados')
-    df.to_sql('datawarehouse', dw)
+    df.to_sql('datawarehouse', dw, index=False)
     print('Dados salvos com sucesso no DW')
 
 # instanciar fluxo do DAG e suas configs
