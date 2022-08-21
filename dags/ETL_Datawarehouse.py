@@ -31,7 +31,7 @@ def extrair_dados():
 
     # exportar dados para a próxima task
     print(df.info()) # log
-    df.to_csv(CSV_FILE, encoding='utf-8-sig')
+    df.to_csv(CSV_FILE, encoding='utf-8-sig', index=False)
 
 @task
 def clean_dados():
@@ -49,7 +49,7 @@ def clean_dados():
 
     # exportar dados para a próxima task
     print(df.info()) # log
-    df.to_csv(CSV_CLEAN, encoding='utf-8-sig')
+    df.to_csv(CSV_CLEAN, encoding='utf-8-sig', index=False)
 
 @task
 def transformar_dados():
@@ -96,7 +96,7 @@ def transformar_dados():
 
     # exportar dados para a próxima task
     print(df.info()) # log
-    df.to_csv(CSV_TRANSFORM, encoding='utf-8-sig')
+    df.to_csv(CSV_TRANSFORM, encoding='utf-8-sig', index=False)
     
 @task
 def carregar_para_dw():
