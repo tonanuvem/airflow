@@ -10,6 +10,7 @@ dir=`pwd`; dir="$(dirname "$dir")"; echo $dir;
 
 docker run -it --name jupyter --rm -p 8888:8888 -v "$dir":/home/jovyan/work -v "$dir/csv/:/home/jovyan/csv" \
     -v "$dir/mlops/treinamento.ipynb:/home/jovyan/treinamento.ipynb" -v "$dir/mlops/automl.ipynb:/home/jovyan/automl.ipynb" \
+    -v "$dir/mlops/model:/home/jovyan/model" \
     -d jupyter/scipy-notebook \
     start-notebook.sh --NotebookApp.password='argon2:$argon2id$v=19$m=10240,t=10,p=8$cIQ7S1OapqyvWzmH636CsA$fh0xOdGwdwv6/cxW5Bqi2mPZuSZlG0zGLwcxl7Ulvac'
 
