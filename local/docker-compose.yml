@@ -29,7 +29,7 @@ services:
       - "../dags:/opt/airflow/dags"
 
     ports:
-      - "18080:8080"
+      - "3080:8080"
 
   # CURSO DATABASE : exemplo MySQL
   phpmyadmin:
