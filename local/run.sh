@@ -13,7 +13,7 @@ IP=$(curl -s checkip.amazonaws.com)
 echo ""
 echo "URLs do projeto:"
 echo ""
-echo " - AIRFLOW         : http://$IP:18080   (login = fiap, password = fiap)"
+echo " - AIRFLOW         : http://$IP:3080   (login = fiap, password = fiap)"
 echo ""
 echo " - PHPMYADMIN      : http://$IP:8082"
 echo ""
