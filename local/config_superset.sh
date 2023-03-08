@@ -5,11 +5,11 @@ docker run -d --rm -p 8088:8088 --name superset_app -v "$dir/superset:/app/super
 # Setup your local admin account
 
 docker exec -it superset_app superset fab create-admin \
-              --username admin \
+              --username fiap \
               --firstname Superset \
-              --lastname Admin \
+              --lastname fiap \
               --email admin@admin.com \
-              --password admin
+              --password fiap
 
 # Migrate local DB to latest
 docker exec -it superset_app superset db upgrade
@@ -31,5 +31,5 @@ IP=$(curl -s checkip.amazonaws.com)
 echo ""
 echo "URLs do projeto:"
 echo ""
-echo " - SUPERSET         : http://$IP:8088   (login = admin, password = admin)"
+echo " - SUPERSET         : http://$IP:8088   (login = fiap, password = fiap)"
 echo ""
