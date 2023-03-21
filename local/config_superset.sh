@@ -22,7 +22,7 @@ docker exec -it superset_app superset init
 
 echo "Loading Dashboard:"
 echo 
-docker exec -it superset_app superset import-dashboards -p /app/superset_home/superset/dashboard_ETL.zip
+docker exec -it superset_app superset import-dashboards -p /app/superset_home/superset/dashboard_ETL.zip -u fiap
 
 echo ""
 echo ""
