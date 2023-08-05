@@ -1,6 +1,6 @@
 dir=`pwd`; dir="$(dirname "$dir")"; echo $dir;
 
-docker run -d --rm -p 8088:8088 --name superset_app -v "$dir/superset:/app/superset_home/superset" --env SUPERSET_SECRET_KEY=fiap --env WTF_CSRF_ENABLED=False --net local_default apache/superset
+docker run -d --rm -p 8088:8088 --name superset_app -v "$dir/superset:/app/superset_home/superset" --env SUPERSET_SECRET_KEY=fiap --env WTF_CSRF_ENABLED=False --net local_default apache/superset:2-0
 
 # Setup your local admin account
 
