@@ -83,8 +83,8 @@ def transformar_dados(input_file: str):
     ingles_status[df['INGLES'] == 0] = 'NÃO'
     # Sobrescreve para SEM RESPOSTA se < 0
     ingles_status[df['INGLES'] < 0] = 'SEM RESPOSTA'
-
-df['INGLES_DESC'] = ingles_status
+    
+    df['INGLES_DESC'] = ingles_status
 
     # 4) eliminar nota ZERO de alunos sem reprovação (ainda não cursaram as matérias 1, 2, 3, 4)
     # Condições matérias
