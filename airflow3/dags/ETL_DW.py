@@ -75,9 +75,16 @@ def transformar_dados(input_file: str):
 
     # 3) inserir coluna descritiva sobre os alunos que falam ingles, ajustando valores nulos
     df["INGLES"] = df["INGLES"].fillna(-1)
-    conditions = [df['INGLES'] > 0, df['INGLES'] == 0, df['INGLES'] < 0]
-    choices = ['SIM', 'NÃO', 'SEM RESPOSTA']
-    df['INGLES_DESC'] = np.select(conditions, choices)
+    # Mapeia os valores numéricos para descrições legíveis
+    ingles_status = pd.Series('SEM RESPOSTA', index=df.index)          # default: sem resposta
+    # Sobrescreve para SIM se > 0
+    ingles_status[df['INGLES'] > 0] = 'SIM'
+    # Sobrescreve para NÃO se = 0
+    ingles_status[df['INGLES'] == 0] = 'NÃO'
+    # Sobrescreve para SEM RESPOSTA se < 0
+    ingles_status[df['INGLES'] < 0] = 'SEM RESPOSTA'
+
+df['INGLES_DESC'] = ingles_status
 
     # 4) eliminar nota ZERO de alunos sem reprovação (ainda não cursaram as matérias 1, 2, 3, 4)
     # Condições matérias
