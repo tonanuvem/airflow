@@ -9,6 +9,8 @@ echo "Removendo DAG '$DAG_ID' do Airflow (container: $CONTAINER)..."
 
 docker exec $CONTAINER airflow dags delete $DAG_ID --yes 
 
+echo ""
+echo ""
 echo "⏳ Aguardando DAG '$DAG_ID' ser carregada no Airflow (container: $CONTAINER)..."
 
 elapsed=0
