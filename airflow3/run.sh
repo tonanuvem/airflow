@@ -1,7 +1,7 @@
 docker-compose up -d
 echo ""
 echo "Aguardando a configuração."
-while [ "$(docker logs airflow 2>&1 | grep "Uvicorn running on" | wc -l)" != "1" ]; do
+while [ "$(docker logs airflow 2>&1 | grep "Uvicorn running on" | wc -l)" -lt "1" ]; do
   printf "."
   sleep 2
 done
