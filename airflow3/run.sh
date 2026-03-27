@@ -5,7 +5,7 @@ while [ "$(docker logs airflow 2>&1 | grep "Uvicorn running on" | wc -l)" != "1"
   printf "."
   sleep 2
 done
-docker exec -ti airflow airflow users create --role Admin --username fiap --email fiap --firstname fiap --lastname fiap --password fiap
+#docker exec -ti airflow airflow users create --role Admin --username fiap --email fiap --firstname fiap --lastname fiap --password fiap
 echo ""
 echo ""
 echo "Config OK"
