@@ -1,7 +1,8 @@
 services:
   # AIRFLOW DATABASE
   postgres:
-    image: postgres:9.6-alpine
+    #image: postgres:9.6-alpine
+    image: postgres:15-alpine
     ports:
       - "5432:5432"
     environment:
@@ -20,13 +21,15 @@ services:
       - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql://admin:admin@postgres/airflow
       - AIRFLOW__CORE__EXECUTOR=LocalExecutor
       - AIRFLOW_CONN_MYSQLDB_CURSO='mysql://admin:admin@mysqldb:3306/fiap'
-      - _AIRFLOW_WWW_USER_USERNAME=admin
-      - _AIRFLOW_WWW_USER_PASSWORD=admin
+      #- _AIRFLOW_WWW_USER_USERNAME=admin
+      #- _AIRFLOW_WWW_USER_PASSWORD=admin
       #- _PIP_ADDITIONAL_REQUIREMENTS
     volumes:
-      - "/var/run/docker.sock:/var/run/docker.sock"
+      #- "/var/run/docker.sock:/var/run/docker.sock"
       - "./dags:/opt/airflow/dags"
-
+    depends_on:
+      - postgres
+      - mysqldb
     ports:
       - "3080:8080"
 
