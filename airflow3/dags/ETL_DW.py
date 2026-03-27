@@ -84,11 +84,14 @@ def transformar_dados(input_file: str):
     def gerar_status(nota, reprova):
         return np.select(
             [
-                (nota >= 4) & (reprova == 0),
-                (nota < 4) & (reprova > 0),
-                (nota == 0) & (reprova == 0)
+                (nota == 0) & (reprova == 0),   # 1º opção: NAO CURSOU
+                (nota >= 4) & (reprova == 0),   # 2º opção: APROVADO
             ],
-            ['APROVADO', 'REPROVADO', 'AINDA NAO CURSOU']
+            [
+                'AINDA NAO CURSOU',
+                'APROVADO'
+            ],
+            default='REPROVADO'                 # 3º opção: REPROVADO
         )
     df['CURSOU_MAT1_DESC'] = gerar_status(df['NOTA_MAT_1'], df['REPROVACOES_MAT_1'])
     df['CURSOU_MAT2_DESC'] = gerar_status(df['NOTA_MAT_2'], df['REPROVACOES_MAT_2'])
