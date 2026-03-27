@@ -92,7 +92,7 @@ def transformar_dados(input_file: str):
                 'APROVADO'
             ],
             default='REPROVADO'                 # 3º opção: REPROVADO
-        )
+        ).astype(str)
     df['CURSOU_MAT1_DESC'] = gerar_status(df['NOTA_MAT_1'], df['REPROVACOES_MAT_1'])
     df['CURSOU_MAT2_DESC'] = gerar_status(df['NOTA_MAT_2'], df['REPROVACOES_MAT_2'])
     df['CURSOU_MAT3_DESC'] = gerar_status(df['NOTA_MAT_3'], df['REPROVACOES_MAT_3'])
