@@ -82,18 +82,6 @@ def transformar_dados(input_file: str):
     # 4) eliminar nota ZERO de alunos sem reprovação (ainda não cursaram as matérias 1, 2, 3, 4)
     # Condições matérias
     def gerar_status(nota, reprova):
-        return np.select(
-            [
-                (nota == 0) & (reprova == 0),   # 1º opção: NAO CURSOU
-                (nota >= 4) & (reprova == 0),   # 2º opção: APROVADO
-            ],
-            [
-                'AINDA NAO CURSOU',
-                'APROVADO'
-            ],
-            default='REPROVADO'                 # 3º opção: REPROVADO
-        ).astype(str)
-    def gerar_status(nota, reprova):
         # Começa assumindo que todos estão REPROVADOS (caso padrão / default)
         status = pd.Series('REPROVADO', index=nota.index)
         # Sobrescreve para APROVADO quem tem nota >= 4 e nenhuma reprovação
