@@ -93,6 +93,17 @@ def transformar_dados(input_file: str):
             ],
             default='REPROVADO'                 # 3º opção: REPROVADO
         ).astype(str)
+    def gerar_status(nota, reprova):
+        # Começa assumindo que todos estão REPROVADOS (caso padrão / default)
+        status = pd.Series('REPROVADO', index=nota.index)
+        # Sobrescreve para APROVADO quem tem nota >= 4 e nenhuma reprovação
+        aprovado = (nota >= 4) & (reprova == 0)
+        status[aprovado] = 'APROVADO'
+        # Sobrescreve para AINDA NAO CURSOU quem tem nota 0 e nenhuma reprovação
+        # (nota 0 com reprovação = REPROVADO, por isso a condição reprova == 0)
+        nao_cursou = (nota == 0) & (reprova == 0)
+        status[nao_cursou] = 'AINDA NAO CURSOU'
+        return status
     df['CURSOU_MAT1_DESC'] = gerar_status(df['NOTA_MAT_1'], df['REPROVACOES_MAT_1'])
     df['CURSOU_MAT2_DESC'] = gerar_status(df['NOTA_MAT_2'], df['REPROVACOES_MAT_2'])
     df['CURSOU_MAT3_DESC'] = gerar_status(df['NOTA_MAT_3'], df['REPROVACOES_MAT_3'])
