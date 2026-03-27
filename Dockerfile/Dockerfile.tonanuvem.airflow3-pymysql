@@ -1,4 +1,4 @@
-FROM apache/airflow:slim-3.1.8-python3.13
+FROM apache/airflow:slim-3.1.8-python3.12
 
 USER root
 
@@ -6,11 +6,12 @@ RUN apt-get update \
   && apt-get install -y --no-install-recommends \
          nano \
          vim \
-  && apt-get autoremove -yqq --purge \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
 USER airflow
 
-RUN python -m pip install --upgrade pip
-RUN pip install --no-cache-dir pymysql
+RUN pip install --no-cache-dir --upgrade pip \
+    pymysql==1.1.1 \
+    pandas==2.2.2 \
+    sqlalchemy==2.0.29
