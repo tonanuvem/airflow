@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Liberando a porta no caso de rodar no Cloud9
+sudo service mysql stop
+
 docker-compose up -d
 
 echo ""
