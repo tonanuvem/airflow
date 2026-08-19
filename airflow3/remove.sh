@@ -10,3 +10,4 @@ docker volume ls -q | grep airflow | while read volume; do
   docker volume rm "$volume"
 done
 echo ""
+docker stop jupyter && docker rm jupyter
