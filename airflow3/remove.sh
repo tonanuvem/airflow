@@ -11,3 +11,5 @@ docker volume ls -q | grep airflow | while read volume; do
 done
 echo ""
 docker stop jupyter && docker rm jupyter
+echo ""
+docker stop superset_app && docker rm superset_app
